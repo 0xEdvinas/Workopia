@@ -47,3 +47,32 @@ function loadPartial($name)
     echo "Partial not found: " . $partialPath;
   }
 }
+
+/** 
+ * Inspect values - var dump with pre tag
+ * 
+ * @param mixed $data
+ * 
+ * @return void
+ */
+function inspect($data)
+{
+  echo '<pre>';
+  var_dump($data);
+  echo '</pre>';
+}
+
+/**
+ * Inspect values and kill the script - var dump with pre tag
+ * 
+ * @param mixed $data
+ * 
+ * @return void
+ */
+function inspectAndDie($data)
+{
+  echo '<pre>';
+  var_dump($data);
+  echo '</pre>';
+  die();
+}
