@@ -12,6 +12,4 @@ $listing = $db->query(
   ]
 )->fetch();
 
-inspect($listing);
-
 loadView('listings/show', ['listing' => $listing]);
