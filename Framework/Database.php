@@ -3,6 +3,8 @@
 namespace Framework;
 
 use PDO;
+use Exception;
+use PDOException;
 
 class Database
 {
