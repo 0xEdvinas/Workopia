@@ -46,4 +46,32 @@ class ListingController
     {
         loadView('listings/create');
     }
+
+    /** 
+     * Store data in database
+     * 
+     * @return void
+     */
+    public function store()
+    {
+        $allowedFields = [
+            'title',
+            'description',
+            'salary',
+            'requirements',
+            'benefits',
+            'company',
+            'address',
+            'city',
+            'state',
+            'phone',
+            'email'
+        ];
+
+        $newListinData = array_intersect_key($_POST, array_flip($allowedFields));
+
+        $newListinData['user_id'] =  1;
+
+        $newListinData = array_map('sanitize', $newListinData);
+    }
 }
