@@ -65,7 +65,8 @@ class ListingController
             'city',
             'state',
             'phone',
-            'email'
+            'email',
+            'tags'
         ];
 
         $newListinData = array_intersect_key($_POST, array_flip($allowedFields));
@@ -74,7 +75,7 @@ class ListingController
 
         $newListinData = array_map('sanitize', $newListinData);
 
-        $requiredFields = ['title', 'description', 'email', 'city', 'state'];
+        $requiredFields = ['title', 'description', 'email', 'city', 'state', 'salary'];
 
         $errors = [];
 
@@ -92,7 +93,30 @@ class ListingController
             ]);
         } else {
             // Submit data
-            echo 'success';
+            $fields = [];
+
+            foreach ($newListinData as $field => $value) {
+                $fields[] = $field;
+            }
+
+            $fields = implode(', ', $fields);
+
+            $values = [];
+
+            foreach ($newListinData as $field => $value) {
+                // Convert empty string to null
+                if ($value === '') {
+                    $newListinData[$field] = null;
+                }
+                $values[] = ':' . $field;
+            }
+
+            $values = implode(', ', $values);
+
+            $query = "INSERT INTO listings({$fields}) VALUES({$values})";
+            $this->db->query($query, $newListinData);
+
+            redirect('/listings');
         }
     }
 }
