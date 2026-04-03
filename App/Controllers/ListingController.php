@@ -154,6 +154,7 @@ class ListingController
      * Show listing edit form
      *
      * @param array $params
+     * 
      * @return void
      */
     public function edit($params)
@@ -172,5 +173,83 @@ class ListingController
         }
 
         loadView('listings/edit', ['listing' => $listing]);
+    }
+
+    /**
+     * Update listing
+     * 
+     * @param array $params
+     * 
+     * @return void
+     */
+    public function update($params)
+    {
+        $id = $params['id'] ?? null;
+
+        $listing = $this->db->query(
+            "SELECT * FROM listings WHERE id = :id",
+            [
+                'id' => $id
+            ]
+        )->fetch();
+
+        if (!$listing) {
+            return ErrorController::notFound('Listing not found');
+        }
+
+        $allowedFields = [
+            'title',
+            'description',
+            'salary',
+            'requirements',
+            'benefits',
+            'company',
+            'address',
+            'city',
+            'state',
+            'phone',
+            'email',
+            'tags'
+        ];
+
+        $updateValues = [];
+
+        $updateValues = array_intersect_key($_POST, array_flip($allowedFields));
+
+        $updateValues = array_map('sanitize', $updateValues);
+
+        $requiredFields = ['title', 'description', 'salary', 'city', 'state', 'email'];
+
+        $errors = [];
+
+        foreach ($requiredFields as $field) {
+            if (empty($updateValues[$field]) || !Validation::string($updateValues[$field])) {
+                $errors[$field] = ucfirst($field) . ' is required';
+            }
+        }
+
+        if (!empty($errors)) {
+            loadView('listing/edit', ['listing' => $listing, 'errors' => $errors]);
+            exit;
+        } else {
+            // submit to database
+            $updateFields = [];
+
+            foreach (array_keys($updateValues) as $field) {
+                $updateFields[] = "{$field} = :{$field}";
+            }
+
+            $updateFields = implode(', ', $updateFields);
+
+            $updateQuery = "UPDATE listings SET $updateFields WHERE id = :id";
+
+            $updateValues['id'] = $id;
+
+            $this->db->query($updateQuery, $updateValues);
+
+            $_SESSION['success_message'] = 'Listing updated';
+
+            redirect('/listings/' . $id);
+        }
     }
 }
