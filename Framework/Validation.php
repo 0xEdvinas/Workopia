@@ -45,7 +45,7 @@ class Validation
      * @param string $value1
      * @return bool
      */
-    public static function mathc($value0, $value1)
+    public static function match($value0, $value1)
     {
         $value0 = trim($value0);
         $value1 = trim($value1);
