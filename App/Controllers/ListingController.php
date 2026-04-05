@@ -182,6 +182,12 @@ class ListingController
             return ErrorController::notFound('Listing not found');
         }
 
+        // Auth
+        if (!Authorization::isOwner($listing->user_id)) {
+            Session::setFlashMessage('error_message', 'You are not authorized to edit this listing');
+            return redirect('/listings/' . $listing->id);
+        }
+
         loadView('listings/edit', ['listing' => $listing]);
     }
 
@@ -205,6 +211,12 @@ class ListingController
 
         if (!$listing) {
             return ErrorController::notFound('Listing not found');
+        }
+
+        // Auth
+        if (!Authorization::isOwner($listing->user_id)) {
+            Session::setFlashMessage('error_message', 'You are not authorized to update this listing');
+            return redirect('/listings/' . $listing->id);
         }
 
         $allowedFields = [
