@@ -6,6 +6,7 @@ $router->get('/listings', 'ListingController@index');
 $router->get('/listings/create', 'ListingController@create', ['auth']);
 $router->post('/listings', 'ListingController@store', ['auth']);
 $router->get('/listings/edit/{id}', 'ListingController@edit', ['auth']);
+$router->get('/listings/search', 'ListingController@search');
 $router->get('/listings/{id}', 'ListingController@show');
 $router->delete('/listings/{id}', 'ListingController@destroy', ['auth']);
 $router->put('/listings/{id}', 'ListingController@update', ['auth']);
