@@ -26,6 +26,7 @@ Workopia is a simple job listing site written in vanilla PHP that has the follow
 
 ```bash
 git clone https://github.com/0xEdvinas/Workopia.git
+cd Workopia
 ```
 
 2. Run docker
