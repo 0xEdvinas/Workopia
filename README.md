@@ -38,7 +38,26 @@ docker compose up
 3. Setup the database
 * Create listings table
 
-<img width="416" height="336" alt="image" src="https://github.com/user-attachments/assets/45b89651-c08c-4d39-a060-ceb84c88fce3" />
+```SQL
+CREATE TABLE `workopia`.`listings` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `title` VARCHAR(255) NOT NULL,
+  `description` LONGTEXT NULL,
+  `salary` VARCHAR(45) NULL,
+  `tags` VARCHAR(255) NULL,
+  `company` VARCHAR(45) NULL,
+  `address` VARCHAR(255) NULL,
+  `city` VARCHAR(45) NULL,
+  `state` VARCHAR(45) NULL,
+  `phone` VARCHAR(45) NULL,
+  `email` VARCHAR(45) NULL,
+  `requirements` LONGTEXT NULL,
+  `benefits` LONGTEXT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+);
+```
 
 * Create users table
 
