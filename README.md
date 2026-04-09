@@ -49,6 +49,11 @@ docker compose up
 
 Default db credentials are:
 
+```
+Host: localhost
+Port: 3306
+```
+
 ```php
 return [
     'host' => 'db',
@@ -64,6 +69,12 @@ return [
 
 ```
 http://localhost:8080
+```
+
+5. Stop containers
+
+```bash
+docker compose down
 ```
 
 ## 🤝 Credits
