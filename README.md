@@ -60,7 +60,7 @@ return [
 ```
 
 
-5. Open in browser
+4. Open in browser
 
 ```
 http://localhost:8080
