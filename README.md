@@ -61,9 +61,29 @@ CREATE TABLE `workopia`.`listings` (
 
 * Create users table
 
-<img width="416" height="185" alt="image" src="https://github.com/user-attachments/assets/ddc4ac71-1790-4398-a965-1950e83d1791" />
-  
+```SQL
+CREATE TABLE `workopia`.`users` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `city` VARCHAR(45) NULL,
+  `state` VARCHAR(45) NULL,
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+);
+```
+
 * Make foreign key for user_id on listings table(on update, delete: CASCADE)
+
+```SQL
+ALTER TABLE `workopia`.`listings`
+ADD CONSTRAINT `fk_user_id`
+FOREIGN KEY (`user_id`) REFERENCES `workopia`.`users`(`id`)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+```
+
 * Optional: add dummy data
 
 Default db credentials are:
