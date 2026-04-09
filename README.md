@@ -15,6 +15,58 @@ Workopia is a simple job listing site written in vanilla PHP that has the follow
   * Edit listing
 * MySQL integration
 
+## Requirements
+
+* PHP 7.4 or higher
+* MySQL 5.7 or higher
+* Docker
+* Apache
+
+## Running
+
+1. Git clone
+
+```bash
+git clone https://github.com/0xEdvinas/Workopia.git
+```
+
+2. Run docker
+
+```bash
+docker compose up
+```
+
+3. Setup the database
+* Create listings table
+
+<img width="416" height="336" alt="image" src="https://github.com/user-attachments/assets/45b89651-c08c-4d39-a060-ceb84c88fce3" />
+
+* Create users table
+
+<img width="416" height="185" alt="image" src="https://github.com/user-attachments/assets/ddc4ac71-1790-4398-a965-1950e83d1791" />
+  
+* Make foreign key for user_id on listings table(on update, delete: CASCADE)
+* Optional: add dummy data
+
+Default db credentials are:
+
+```php
+return [
+    'host' => 'db',
+    'port' => 3306,
+    'dbname' => 'workopia',
+    'username' => 'workopia_user',
+    'password' => 'workopia_pass'
+];
+```
+
+
+5. Open in browser
+
+```
+http://localhost:8080
+```
+
 ## 🤝 Credits
 
 [Brad Traversy](https://www.udemy.com/user/brad-traversy/) for the course
