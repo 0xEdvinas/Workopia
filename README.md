@@ -15,14 +15,14 @@ Workopia is a simple job listing site written in vanilla PHP that has the follow
   * Edit listing
 * MySQL integration
 
-## Requirements
+## 🏗️ Requirements
 
 * PHP 7.4 or higher
 * MySQL 5.7 or higher
 * Docker
 * Apache
 
-## Running
+## 🏃‍♂️ Running
 
 1. Git clone
 
