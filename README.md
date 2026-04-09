@@ -17,10 +17,8 @@ Workopia is a simple job listing site written in vanilla PHP that has the follow
 
 ## 🏗️ Requirements
 
-* PHP 7.4 or higher
-* MySQL 5.7 or higher
 * Docker
-* Apache
+* Docker Compose
 
 ## 🏃‍♂️ Running
 
